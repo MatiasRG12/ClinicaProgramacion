@@ -2,15 +2,14 @@ package co.edu.uniquindio.dto;
 
 import java.util.List;
 
-public record MedicoDTO(
+public record InfoMedicoDTO(
+        int codigo,
         String nombre,
         String cedula,
         int codigoCiudad,
         int codigoEspecialidad,
         String telefono,
         String correo,
-        String password,
         List< HorarioDTO > horarios
-
 ) {
 }
