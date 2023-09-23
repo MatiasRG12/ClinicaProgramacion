@@ -1,8 +1,6 @@
 package co.edu.uniquindio.modelo.entidades;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
@@ -11,13 +9,27 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class AtencionMedica implements Serializable {
+
     @Id
-    private String codigo;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false, unique = true)
+    @EqualsAndHashCode.Include
+    private int codigo;
+
+    @Column(length = 500)
     private String sintomasPaciente;
+
+    @Column(length = 500)
     private String diagnostico;
+
+    @Column(length = 500)
     private String tratamiento;
+
+    @Column(length = 500)
     private String nota;
+
 
     @OneToOne
     private Cita cita;
