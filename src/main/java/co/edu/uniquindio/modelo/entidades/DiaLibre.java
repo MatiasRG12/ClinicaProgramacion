@@ -1,11 +1,11 @@
 package co.edu.uniquindio.modelo.entidades;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -18,9 +18,14 @@ import java.time.LocalDateTime;
 public class DiaLibre implements Serializable {
 
     @Id
-    private String codigo;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false)
+    @EqualsAndHashCode.Include
+    private int codigo;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime fecha;
+
 
     @ManyToOne
     private Medico medico;

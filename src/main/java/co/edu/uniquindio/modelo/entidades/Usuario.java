@@ -13,8 +13,16 @@ import java.io.Serializable;
 public class Usuario implements Serializable {
 
     @Id
+    @Column(nullable = false, length = 20, unique = true)
+    @EqualsAndHashCode.Include
     private String codigo;
+
+    @EqualsAndHashCode.Include
+    @Column(length = 30, unique = true)
     private String email;
+
+    @EqualsAndHashCode.Include
+    @Column(name = "contraseña", nullable = false)
     private String contrasenia;
 
 }

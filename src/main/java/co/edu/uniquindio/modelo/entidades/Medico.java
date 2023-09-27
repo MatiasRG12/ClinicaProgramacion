@@ -1,6 +1,7 @@
 package co.edu.uniquindio.modelo.entidades;
 import co.edu.uniquindio.modelo.enumeraciones.Especialidad;
 import co.edu.uniquindio.modelo.enumeraciones.Jornada;
+import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -14,8 +15,14 @@ import java.util.List;
 @DiscriminatorValue("medico")
 public class Medico extends Persona implements Serializable {
 
+    @Column(nullable = false)
+    @EqualsAndHashCode.Include
     private Especialidad especialidad;
+
+    @Column(nullable = false)
+    @EqualsAndHashCode.Include
     private Jornada jornada;
+
 
     @OneToMany(mappedBy = "medico")
     private List<Cita> listaCitasMedico;
