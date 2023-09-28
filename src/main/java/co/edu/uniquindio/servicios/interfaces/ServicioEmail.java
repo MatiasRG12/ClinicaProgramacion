@@ -1,4 +1,4 @@
-package co.edu.uniquindio.servicios;
+package co.edu.uniquindio.servicios.interfaces;
 
 import co.edu.uniquindio.dto.EmailDTO;
 

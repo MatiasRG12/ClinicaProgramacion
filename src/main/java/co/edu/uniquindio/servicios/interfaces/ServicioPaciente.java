@@ -1,4 +1,4 @@
-package co.edu.uniquindio.servicios;
+package co.edu.uniquindio.servicios.interfaces;
 
 public interface ServicioPaciente {
     void registrarse();
