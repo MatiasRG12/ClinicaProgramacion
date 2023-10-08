@@ -1,15 +1,22 @@
 package co.edu.uniquindio.dto;
 
+import co.edu.uniquindio.modelo.enumeraciones.Especialidad;
+import co.edu.uniquindio.modelo.enumeraciones.EstadoMedico;
+import co.edu.uniquindio.modelo.enumeraciones.Jornada;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
 public record InfoMedicoDTO(
-        int codigo,
         String nombre,
         String cedula,
-        int codigoCiudad,
-        int codigoEspecialidad,
+        String ciudad,
+        Especialidad especialidad,
         String telefono,
         String correo,
-        List< HorarioDTO > horarios
+        Jornada jornada,
+        EstadoMedico estado
 ) {
 }

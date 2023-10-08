@@ -1,4 +1,11 @@
 package co.edu.uniquindio.dto;
 
-public record MedicoDTOAdmin(int codigo, String nombre, String urlFoto, String especialidad) {
+import co.edu.uniquindio.modelo.enumeraciones.Especialidad;
+
+public record MedicoDTOAdmin(
+        String cedula,
+        String nombre,
+        String urlFoto,
+        Especialidad especialidad)
+    {
 }

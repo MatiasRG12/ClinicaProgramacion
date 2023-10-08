@@ -13,6 +13,8 @@ import java.util.List;
 @DiscriminatorValue("admin")
 public class Administrador extends Usuario implements Serializable {
 
+    private String nombre;
+
     @OneToMany(mappedBy = "administrador")
     private List<Pqrs> listaPqrs;
 

@@ -13,9 +13,10 @@ import java.io.Serializable;
 public class Usuario implements Serializable {
 
     @Id
-    @Column(nullable = false, length = 20, unique = true)
+    @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @EqualsAndHashCode.Include
-    private String codigo;
+    private int codigo;
 
     @EqualsAndHashCode.Include
     @Column(length = 30, unique = true)

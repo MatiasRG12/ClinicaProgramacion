@@ -13,7 +13,6 @@ import java.io.Serializable;
 @DiscriminatorColumn(name = "rol")
 public class Persona extends Usuario implements Serializable {
 
-    @Id
     @Column(nullable = false,length = 15,unique = true)
     @EqualsAndHashCode.Include
     private String cedula;
@@ -26,7 +25,6 @@ public class Persona extends Usuario implements Serializable {
 
     private String foto;
 
-    @ManyToOne
-    private Ciudad ciudad;
+    private String ciudad;
 
 }

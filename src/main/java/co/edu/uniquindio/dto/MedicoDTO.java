@@ -1,18 +1,30 @@
 package co.edu.uniquindio.dto;
 
-import co.edu.uniquindio.modelo.entidades.Ciudad;
+import co.edu.uniquindio.modelo.enumeraciones.Especialidad;
+import co.edu.uniquindio.modelo.enumeraciones.EstadoMedico;
+import co.edu.uniquindio.modelo.enumeraciones.Jornada;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-import java.util.List;
 
+@AllArgsConstructor
+@Setter
+@Getter
 public record MedicoDTO(
+
         String nombre,
         String cedula,
-        Ciudad ciudad, //revisar esta parte
-        int codigoEspecialidad,
+        String ciudad,
+        Especialidad especialidad,
         String telefono,
         String correo,
         String password,
-        List< HorarioDTO > horarios
+        Jornada jornada,
+        EstadoMedico estado
 
 ) {
+
 }

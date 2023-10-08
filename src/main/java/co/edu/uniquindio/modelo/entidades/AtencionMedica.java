@@ -30,7 +30,6 @@ public class AtencionMedica implements Serializable {
     @Column(length = 500)
     private String nota;
 
-
     @OneToOne
     private Cita cita;
 
