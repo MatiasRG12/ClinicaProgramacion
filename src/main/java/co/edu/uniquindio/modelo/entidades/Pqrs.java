@@ -1,6 +1,7 @@
 package co.edu.uniquindio.modelo.entidades;
 
 import co.edu.uniquindio.modelo.enumeraciones.EstadoPqrs;
+import co.edu.uniquindio.modelo.enumeraciones.TipoPqrs;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,7 +24,7 @@ public class Pqrs implements Serializable{
     private int codigo;
 
     @Column(nullable = false)
-    private String tipo;
+    private TipoPqrs tipo;
 
     @Column(nullable = false)
     private EstadoPqrs estado;
@@ -33,8 +34,6 @@ public class Pqrs implements Serializable{
 
     @Column(length = 500)
     private String descripcion;
-
-
 
     @ManyToOne
     private Cita codigoCita;

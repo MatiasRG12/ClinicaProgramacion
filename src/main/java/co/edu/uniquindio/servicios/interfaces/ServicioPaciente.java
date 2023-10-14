@@ -1,30 +1,46 @@
 package co.edu.uniquindio.servicios.interfaces;
 
+import co.edu.uniquindio.dto.CompartidosDTOs.CambiarContraseniaDTO;
+import co.edu.uniquindio.dto.CompartidosDTOs.DetallePqrsDTO;
+import co.edu.uniquindio.dto.CompartidosDTOs.InfoPqrsDTO;
+import co.edu.uniquindio.dto.PacienteDTOs.*;
+import co.edu.uniquindio.modelo.enumeraciones.Especialidad;
+
+import java.util.List;
+
 public interface ServicioPaciente {
-    void registrarse();
+    int registrarPaciente(RegistroPacienteDTO pacienteDTO) throws Exception;
 
-    void editarPerfil();
+    int editarInfoBasica(EditarPerfilPacienteDTO pacienteDTO) throws Exception;
 
-    void eliminarCuenta();
+    void eliminarCuenta(EliminarCuentaDTO eCuentaDTO) throws Exception;
 
-    void enviarLinkRecuperacion();
+    void enviarLinkRecuperacion(String correo) throws Exception;
 
-    void cambiarPassword();
+    void cambiarPassword(CambiarContraseniaDTO dto) throws Exception;
 
-    void agendarCita();
+    int crearPQRS(CrearPqrsDTO pqrsDTO) throws Exception;
 
-    void crearPQRS();
+    DetallePqrsDTO verDetallePqrs(int codigo)throws Exception;
 
-    void listarPQRSPaciente();
+    List<InfoPqrsDTO> listarPQRSPaciente(int codigoPaciente) throws Exception;
 
-    void responderPQRS();
+    List<InfoPqrsDTO> filtrarPqrsPorTipo(FiltroPqrsTipoDTO dto) throws Exception;
 
-    void listarCitasPaciente();
+    List<ItemFechaMedicoDTO> listarFechasMedico(int idMedico) throws Exception;
 
-    void filtrarCitasPorFecha();
+    int agendarCita(AgendarCitaDTO citaDTO)throws Exception;
 
-    void filtrarCitasPorMedico();
+    List<ItemMedicoDTO> listarMedicosEspecialidad(Especialidad especialidad) throws Exception;
 
-    void verDetalleCita();
+    List<InfoCitaDTO> listarCitasPaciente(int codigoPaciente) throws Exception;
+
+    List<InfoCitaDTO> filtrarCitasPorMedico(FiltroCitaMedicoDTO filtroDTO) throws Exception;
+
+    List<InfoCitaDTO> filtrarCitasPorFecha(FiltroCitaFechaDTO filtroDTO) throws Exception;
+
+    List<InfoCitaDTO> filtrarCitasPorEspecialidad(FiltroCitaEspDTO filtroDTO) throws Exception;
+
+    List<InfoCitaDTO> filtrarCitasPorMedicoFechaEspecialidad(FiltroMedFechaEspDTO filtroDTO) throws Exception;
 
 }

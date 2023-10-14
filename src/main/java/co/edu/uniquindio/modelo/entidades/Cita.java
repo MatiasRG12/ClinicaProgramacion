@@ -7,6 +7,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -27,6 +29,9 @@ public class Cita implements Serializable {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime fechaCita;
+
+    @Column(nullable = false)
+    private LocalTime horaCita;
 
     @Column(length = 100)
     private String motivo;

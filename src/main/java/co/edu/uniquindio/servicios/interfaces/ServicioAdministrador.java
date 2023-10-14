@@ -1,12 +1,9 @@
 package co.edu.uniquindio.servicios.interfaces;
 
 
-import co.edu.uniquindio.dto.*;
-import co.edu.uniquindio.dto.AdminDTOs.ActualizarMedicoAdminDTO;
-import co.edu.uniquindio.dto.AdminDTOs.DetalleCitaDTOAdmin;
-import co.edu.uniquindio.dto.AdminDTOs.InfoCitaDTOAdmin;
-import co.edu.uniquindio.dto.InfoMedicoDTO;
-import co.edu.uniquindio.dto.AdminDTOs.DetallePqrsDTOAdmin;
+import co.edu.uniquindio.dto.AdminDTOs.*;
+import co.edu.uniquindio.dto.CompartidosDTOs.InfoPqrsDTO;
+import co.edu.uniquindio.dto.CompartidosDTOs.DetallePqrsDTO;
 
 import java.util.List;
 
@@ -18,22 +15,31 @@ public interface ServicioAdministrador {
 
     List<InfoMedicoDTO> listarMedicos() throws Exception;
 
-    InfoMedicoDTO obtenerMedico(String cedula) throws Exception;
+    DetalleMedicoDTO verDetalleMedico(int edulaMedico) throws Exception;
+
+    List<InfoMedicoDTO> filtrarMedicosNombre(String nombreMedico) throws Exception;
+
+    List<InfoMedicoDTO> filtrarMedicosEspecialidad(int codigoEspecialidad) throws Exception;
+
+    List<InfoMedicoDTO> filtrarMedicosNombreEspecialidad(FiltroMedicosNomEspDTO dto) throws Exception;
 
     //-------------------------------------------------------------------------------------------//
-
-    List<InfoPqrsDTO> filtrarPQRSEstado(int estado) throws Exception;
 
     List<InfoPqrsDTO> listarPQRS() throws Exception;
 
-    String responderPQRS(int codigo) throws Exception;
+    List<InfoPqrsDTO> filtrarPQRSEstado(int estado) throws Exception;
 
-    DetallePqrsDTOAdmin verDetallePQRS(int codigo) throws Exception;
+    String verMotivo(int codigoPqrs) throws Exception; //REVISAR
+
+    void escogerPqrs(int codigo, int codigoAdmin) throws Exception;
+
+    DetallePqrsDTO verDetallePQRS(int codigo) throws Exception;
+
+    void cambiarEstadoPQRS(int codigoPqrs, int estado) throws Exception;
 
     //-------------------------------------------------------------------------------------------//
 
-    List<InfoCitaDTOAdmin> listarCitas() throws Exception;
-
-    List<DetalleCitaDTOAdmin> verDetalleCitas() throws Exception;
+    List<InfoCitaDTOAdmin> listarCitasAdmin() throws Exception;
+    List<InfoCitaDTOAdmin> filtrarPorMedico(String nombreMedico) throws Exception;
 
 }

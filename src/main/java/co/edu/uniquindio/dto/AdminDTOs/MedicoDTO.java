@@ -1,4 +1,4 @@
-package co.edu.uniquindio.dto;
+package co.edu.uniquindio.dto.AdminDTOs;
 
 import co.edu.uniquindio.modelo.enumeraciones.Especialidad;
 import co.edu.uniquindio.modelo.enumeraciones.EstadoMedico;

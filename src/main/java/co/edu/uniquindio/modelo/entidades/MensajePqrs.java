@@ -29,7 +29,6 @@ public class MensajePqrs implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime fecha;
 
-
     @ManyToOne
     private Pqrs pqrs;
 

@@ -1,4 +1,4 @@
-package co.edu.uniquindio.dto;
+package co.edu.uniquindio.dto.CompartidosDTOs;
 
 import java.time.LocalDateTime;
 

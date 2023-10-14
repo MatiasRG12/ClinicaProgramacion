@@ -1,16 +1,14 @@
-package co.edu.uniquindio.dto.AdminDTOs;
+package co.edu.uniquindio.dto.CompartidosDTOs;
 
-import co.edu.uniquindio.dto.MensajePqrsDTO;
-import co.edu.uniquindio.modelo.entidades.MensajePqrs;
-import co.edu.uniquindio.modelo.enumeraciones.Especialidad;
 import co.edu.uniquindio.modelo.enumeraciones.EstadoPqrs;
+import co.edu.uniquindio.modelo.enumeraciones.TipoPqrs;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public record DetallePqrsDTOAdmin(
+public record DetallePqrsDTO(
         int codigo,
-        String tipo,
+        TipoPqrs tipo,
         EstadoPqrs estado,
         LocalDateTime fecha,
         String motivo,

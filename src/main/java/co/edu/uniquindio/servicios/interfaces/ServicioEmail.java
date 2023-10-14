@@ -1,7 +1,10 @@
 package co.edu.uniquindio.servicios.interfaces;
 
-import co.edu.uniquindio.dto.EmailDTO;
+import co.edu.uniquindio.dto.extrasDTOs.EmailDTO;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface ServicioEmail {
-    String enviarCorreo(EmailDTO emailDTO) throws Exception;
+
+    void enviarCorreo(EmailDTO emailDTO) throws Exception;
 }
