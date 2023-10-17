@@ -2,10 +2,7 @@ package co.edu.uniquindio.modelo.entidades;
 
 import co.edu.uniquindio.modelo.enumeraciones.Eps;
 import co.edu.uniquindio.modelo.enumeraciones.TipoSangre;
-import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -17,6 +14,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @DiscriminatorValue("paciente")
+
 public class Paciente extends Persona implements Serializable {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")

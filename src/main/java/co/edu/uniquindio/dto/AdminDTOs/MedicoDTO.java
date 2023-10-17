@@ -3,16 +3,8 @@ package co.edu.uniquindio.dto.AdminDTOs;
 import co.edu.uniquindio.modelo.enumeraciones.Especialidad;
 import co.edu.uniquindio.modelo.enumeraciones.EstadoMedico;
 import co.edu.uniquindio.modelo.enumeraciones.Jornada;
-import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 
-@AllArgsConstructor
-@Setter
-@Getter
 public record MedicoDTO(
 
         String nombre,

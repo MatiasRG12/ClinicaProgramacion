@@ -20,5 +20,8 @@ public interface PqrsRepo extends JpaRepository<Pqrs,Integer> {
     @Query("SELECT COUNT(p) FROM Pqrs p WHERE p.estado = :estadoPqrs")
     Long contarActivos(EstadoPqrs estadoPqrs);
 
-    List<Pqrs> findAllByPacienteCodigoAndPqrsTipo(int i, TipoPqrs t);
+    //List<Pqrs> findAllByPacienteCodigoAndPqrsTipo(int i, TipoPqrs t);
+
+    List<Pqrs> findAllByCodigoCitaPacienteCodigoAndTipo(int codigoPaciente, TipoPqrs t);
+
 }

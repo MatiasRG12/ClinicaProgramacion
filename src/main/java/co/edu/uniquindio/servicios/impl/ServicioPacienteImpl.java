@@ -141,7 +141,7 @@ public class ServicioPacienteImpl implements ServicioPaciente {
     @Override
     public List<InfoPqrsDTO> filtrarPqrsPorTipo(FiltroPqrsTipoDTO dto) throws Exception{
         TipoPqrs t = TipoPqrs.values()[dto.tipoPqrs()];
-        List<Pqrs> listaAux = pqrsRepo.findAllByPacienteCodigoAndPqrsTipo(dto.codigoPaciente(),t);
+        List<Pqrs> listaAux = pqrsRepo.findAllByCodigoCitaPacienteCodigoAndTipo(dto.codigoPaciente(),t);
         if(listaAux.isEmpty()){
             throw new Exception();
         }
@@ -222,14 +222,14 @@ public class ServicioPacienteImpl implements ServicioPaciente {
             if (medicoOptional.get().getJornada() == Jornada.DIURNA) { //Verificacion si jornada es Diurna
                 LocalTime hora = LocalTime.of(7, 0);
                 for (DiaLibre diaLibre : diasLibres) { //No se tienen en cuenta para listar los dias libres
-                    if(fecha.isEqual(diaLibre.getFecha())){
-                        throw new Exception();
-                    }
-                    while (hora.isBefore(LocalTime.of(19, 0))) {
-                        if (!estaOcupado(citasAgendadas, hora)) {
-                            horarios.add( LocalDateTime.of( fecha.getYear(), fecha.getMonth(), fecha.getDayOfMonth(), hora.getHour(), hora.getMinute() ) );
+                    if(!fecha.isEqual(diaLibre.getFecha())) {
+
+                        while (hora.isBefore(LocalTime.of(19, 0))) {
+                            if (!estaOcupado(citasAgendadas, hora)) {
+                                horarios.add(LocalDateTime.of(fecha.getYear(), fecha.getMonth(), fecha.getDayOfMonth(), hora.getHour(), hora.getMinute()));
+                            }
+                            hora = hora.plusMinutes(30);
                         }
-                        hora = hora.plusMinutes(30);
                     }
                 }
 

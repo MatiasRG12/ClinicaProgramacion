@@ -11,6 +11,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @DiscriminatorValue("admin")
+
 public class Administrador extends Usuario implements Serializable {
 
     private String nombre;

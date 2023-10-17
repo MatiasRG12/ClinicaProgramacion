@@ -11,6 +11,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @DiscriminatorColumn(name = "rol")
+
 public class Persona extends Usuario implements Serializable {
 
     @Column(nullable = false,length = 15,unique = true)

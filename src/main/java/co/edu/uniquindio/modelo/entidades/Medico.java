@@ -2,10 +2,7 @@ package co.edu.uniquindio.modelo.entidades;
 import co.edu.uniquindio.modelo.enumeraciones.Especialidad;
 import co.edu.uniquindio.modelo.enumeraciones.EstadoMedico;
 import co.edu.uniquindio.modelo.enumeraciones.Jornada;
-import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
 import java.util.List;
@@ -14,6 +11,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @DiscriminatorValue("medico")
+
 public class Medico extends Persona implements Serializable {
 
     @Column(nullable = false)
