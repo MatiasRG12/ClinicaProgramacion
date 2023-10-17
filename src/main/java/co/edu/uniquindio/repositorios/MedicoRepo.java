@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 public interface MedicoRepo extends JpaRepository <Medico, Integer> {
-
+    //@Query("select m from Medico m where m.cedula=:cedula") //???
     Optional<Medico> findByCedula(String cedula);
 
     List<Medico> findAllByEspecialidad(Especialidad especialidad);

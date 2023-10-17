@@ -141,7 +141,7 @@ public class ServicioPacienteImpl implements ServicioPaciente {
     @Override
     public List<InfoPqrsDTO> filtrarPqrsPorTipo(FiltroPqrsTipoDTO dto) throws Exception{
         TipoPqrs t = TipoPqrs.values()[dto.tipoPqrs()];
-        List<Pqrs> listaAux = pqrsRepo.findAllByPacienteCodigoAndPqrsTipo(dto.codigoPaciente(),t);
+        List<Pqrs> listaAux = pqrsRepo.findAllByCodigoCitaPacienteCodigoAndTipo(dto.codigoPaciente(),t);
         if(listaAux.isEmpty()){
             throw new Exception();
         }

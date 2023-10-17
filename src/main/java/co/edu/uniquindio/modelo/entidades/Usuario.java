@@ -10,6 +10,7 @@ import java.io.Serializable;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "rol")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+
 public class Usuario implements Serializable {
 
     @Id
@@ -23,7 +24,7 @@ public class Usuario implements Serializable {
     private String email;
 
     @EqualsAndHashCode.Include
-    @Column(name = "contraseña", nullable = false)
+    @Column(name = "contrasenia", nullable = false)
     private String contrasenia;
 
 }

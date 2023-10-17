@@ -14,12 +14,14 @@ import lombok.AllArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service("ServicioAdministrador")
+@Transactional
 @AllArgsConstructor
 public class ServicioAdministradorImpl implements ServicioAdministrador {
 
@@ -32,19 +34,24 @@ public class ServicioAdministradorImpl implements ServicioAdministrador {
     @Override
     public int crearMedico(MedicoDTO medicoDTO) throws Exception {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
         if (medicoRepo.findByCedula(medicoDTO.cedula()).isPresent()) {
             throw new Exception("Medico ya existe");
         }
+
         Medico medicoNuevo = new Medico();
-        medicoNuevo.setEmail(medicoDTO.correo());
-        medicoNuevo.setContrasenia(encoder.encode(medicoDTO.password()));
         medicoNuevo.setNombre(medicoDTO.nombre());
-        medicoNuevo.setTelefono(medicoDTO.telefono());
+        medicoNuevo.setCedula(medicoDTO.cedula());
         medicoNuevo.setCiudad(medicoDTO.ciudad());
         medicoNuevo.setEspecialidad(medicoDTO.especialidad());
+        medicoNuevo.setTelefono(medicoDTO.telefono());
+        medicoNuevo.setEmail(medicoDTO.correo());
+        medicoNuevo.setContrasenia(encoder.encode(medicoDTO.password()));
         medicoNuevo.setJornada(medicoDTO.jornada());
         medicoNuevo.setEstado(medicoDTO.estado());
+
         medicoRepo.save(medicoNuevo);
+
         return medicoNuevo.getCodigo();
     }
 

@@ -10,5 +10,6 @@ import java.util.Optional;
 public interface PacienteRepo extends JpaRepository<Paciente,Integer> {
     Optional<Paciente> findByCedula(String cedula);
 
-    Optional<Paciente> findByNombreUsuarioAndContrasenia(String nombreUsuario, String contrasenia);
+    Optional<Paciente> findByNombreAndContrasenia(String nombreUsuario, String contrasenia);
+
 }
