@@ -37,11 +37,11 @@ public class ServicioAdministradorImplTest {
 
         MedicoDTO medicoDTO = new MedicoDTO(
                 "Pepito Perez",
-                "654789631",
+                "1004875959",
                 "Armenia",
                 Especialidad.MEDICINA_GENERAL,
                 "321542154",
-                "correo@correo.com",
+                "pepitoPerez@gmail.com",
                 "123456",
                 Jornada.DIURNA,
                 EstadoMedico.A);
@@ -59,7 +59,7 @@ public class ServicioAdministradorImplTest {
     public void actualizarMedicoTest() throws Exception {
 
        int nuevo = servicioAdministrador.actualizarMedico(new ActualizarMedicoAdminDTO(
-               "123456789",
+               "1004871093",
                Especialidad.NEUROLOGIA,
                Jornada.NOCTURNA));
 
@@ -85,7 +85,7 @@ public class ServicioAdministradorImplTest {
 
         DetalleMedicoDTO detalleMedicoDTO;
         try {
-            detalleMedicoDTO = servicioAdministrador.verDetalleMedico("123456789");
+            detalleMedicoDTO = servicioAdministrador.verDetalleMedico("1004871093");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
