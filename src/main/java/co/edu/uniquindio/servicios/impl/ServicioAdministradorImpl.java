@@ -1,6 +1,5 @@
 package co.edu.uniquindio.servicios.impl;
 
-
 import co.edu.uniquindio.dto.AdminDTOs.*;
 import co.edu.uniquindio.dto.CompartidosDTOs.InfoPqrsDTO;
 import co.edu.uniquindio.dto.CompartidosDTOs.DetallePqrsDTO;
@@ -11,6 +10,7 @@ import co.edu.uniquindio.modelo.enumeraciones.EstadoPqrs;
 import co.edu.uniquindio.repositorios.*;
 import co.edu.uniquindio.servicios.interfaces.*;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,8 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service("ServicioAdministrador")
-@Transactional
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ServicioAdministradorImpl implements ServicioAdministrador {
 
     private final MedicoRepo medicoRepo;
