@@ -15,7 +15,7 @@ public interface ServicioAdministrador {
 
     List<InfoMedicoDTO> listarMedicos() throws Exception;
 
-    DetalleMedicoDTO verDetalleMedico(int edulaMedico) throws Exception;
+    DetalleMedicoDTO verDetalleMedico(String cedulaMedico) throws Exception;
 
     List<InfoMedicoDTO> filtrarMedicosNombre(String nombreMedico) throws Exception;
 
@@ -29,9 +29,9 @@ public interface ServicioAdministrador {
 
     List<InfoPqrsDTO> filtrarPQRSEstado(int estado) throws Exception;
 
-    String verMotivo(int codigoPqrs) throws Exception; //REVISAR
+    String verMotivoPQRS(int codigoPqrs) throws Exception; //REVISAR
 
-    void escogerPqrs(int codigo, int codigoAdmin) throws Exception;
+    void escogerPQRS(int codigo, int codigoAdmin) throws Exception;
 
     DetallePqrsDTO verDetallePQRS(int codigo) throws Exception;
 

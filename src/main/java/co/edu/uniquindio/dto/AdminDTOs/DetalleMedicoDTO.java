@@ -10,7 +10,7 @@ public record DetalleMedicoDTO(
         String ciudad,
         Especialidad especialidad,
         String telefono,
-        String correo,
+        String email,
         Jornada jornada,
         EstadoMedico estado
 ) {

@@ -81,7 +81,7 @@ public class ServicioAdministradorImpl implements ServicioAdministrador {
         for (Medico medico : listaMedicos) {
             medicosEncontrados.add(new InfoMedicoDTO(
                     medico.getCedula(),
-                    medico.getCedula(),
+                    medico.getNombre(),
                     medico.getEspecialidad())
             );
         }
@@ -89,8 +89,8 @@ public class ServicioAdministradorImpl implements ServicioAdministrador {
     }
 
     @Override
-    public DetalleMedicoDTO verDetalleMedico(int codigoMedico) throws Exception {
-        Optional<Medico> opcional = medicoRepo.findById(codigoMedico);
+    public DetalleMedicoDTO verDetalleMedico(String cedulaMedico) throws Exception {
+        Optional<Medico> opcional = medicoRepo.findByCedula(cedulaMedico);
         if (opcional.isEmpty()) {
             throw new Exception("Medico no existe");
         }
@@ -128,7 +128,7 @@ public class ServicioAdministradorImpl implements ServicioAdministrador {
     public List<InfoMedicoDTO> filtrarMedicosEspecialidad(int codigoEspecialidad) throws Exception {
         List<Medico> listaAux = medicoRepo.findAllByEspecialidad(Especialidad.values()[codigoEspecialidad]);
         if(listaAux.isEmpty()){
-            throw new Exception();
+            throw new Exception("No hay medicos con esa especialidad");
         }
         List<InfoMedicoDTO> listaMedicos = new ArrayList<>();
         for (Medico m : listaAux) {
@@ -138,7 +138,7 @@ public class ServicioAdministradorImpl implements ServicioAdministrador {
                     m.getEspecialidad()
             ));
         }
-        return null;
+        return listaMedicos;
     }
 
     @Override
@@ -178,7 +178,7 @@ public class ServicioAdministradorImpl implements ServicioAdministrador {
     }
 
     @Override
-    public String verMotivo(int codigoPqrs) throws Exception {
+    public String verMotivoPQRS(int codigoPqrs) throws Exception {
         Optional<Pqrs> opcional = pqrsRepo.findById(codigoPqrs);
         if(opcional.isEmpty()){
             throw new Exception();
@@ -188,7 +188,7 @@ public class ServicioAdministradorImpl implements ServicioAdministrador {
     }
 
     @Override
-    public void escogerPqrs(int codigoPqrs, int codigoAdmin) throws Exception {
+    public void escogerPQRS(int codigoPqrs, int codigoAdmin) throws Exception {
         Optional<Pqrs> opcionalPqrs = pqrsRepo.findById(codigoPqrs);
         Optional<Administrador> opcionalAdmin= adminRepo.findById(codigoAdmin);
         if(opcionalPqrs.isEmpty() || opcionalAdmin.isEmpty()){
@@ -235,7 +235,7 @@ public class ServicioAdministradorImpl implements ServicioAdministrador {
         );
     }
 
-    private List<MensajePqrsDTO> convertirMensajes(List<MensajePqrs> mensajes) {
+    public List<MensajePqrsDTO> convertirMensajes(List<MensajePqrs> mensajes) { //Estaba en private, lo puse public
         List<MensajePqrsDTO> listaMensajes = new ArrayList<>();
         for (MensajePqrs m: mensajes) {
             listaMensajes.add(new MensajePqrsDTO(
