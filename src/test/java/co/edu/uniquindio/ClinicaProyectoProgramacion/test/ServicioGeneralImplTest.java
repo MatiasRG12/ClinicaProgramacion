@@ -16,7 +16,7 @@ public class ServicioGeneralImplTest {
     @Sql("classpath:dataset.sql")
     public void verDetalleCitacionTest() throws Exception {
         try {
-            servicioGeneral.verDetalleCita(963);
+            servicioGeneral.verDetalleCita(1000);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

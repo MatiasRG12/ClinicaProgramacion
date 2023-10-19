@@ -1,4 +1,4 @@
-insert into usuario values ("admin", 001, "$2a$10$6d34h7WxKiV77noBDIcyN.Sb.OkCJ1ORp1PGEEM0dWtvK1EuElPBS", "adminUno@gmail.com");
+insert into usuario values ("admin", 001, "$2a$10$vUvR1xXVwDxLP9KjdbJmhOASLgRWaycfvUqyoIj8Sa93Ol.FMnyYC", "adminUno@gmail.com");
 insert into usuario values ("admin", 002, "passwordAdminDos", "adminDos@gmail.com");
 
 insert into usuario values ("paciente", 005, "passwordPacienteUno", "pacienteUno@gmail.com");
