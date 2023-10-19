@@ -1,7 +1,9 @@
 package co.edu.uniquindio.ClinicaProyectoProgramacion.test;
 
 import co.edu.uniquindio.dto.extrasDTOs.LoginDTO;
+import co.edu.uniquindio.dto.extrasDTOs.TokenDTO;
 import co.edu.uniquindio.servicios.impl.ServicioAutenticacionImpl;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,12 +27,12 @@ public class ServicioAutenticacionImplTest {
     public void loginTest(){
         LoginDTO login = new LoginDTO("adminUno@gmail.com", "passwordAdminUno");
         try {
-            servicioAutenticacion.login(login);
+            TokenDTO tokenDTO = servicioAutenticacion.login(login);
+            Assertions.assertNotNull(tokenDTO);
+            System.out.println(tokenDTO);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
-
-
 
 }
