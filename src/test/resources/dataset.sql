@@ -67,3 +67,15 @@ insert into mensaje_pqrs values (3001, "2023-10-18 20:30:00", "MensajeDos", 3001
 insert into mensaje_pqrs values (3002, "2023-10-18 20:30:00", "MensajeTres", 3002, 2002);
 insert into mensaje_pqrs values (3003, "2023-10-18 20:30:00", "MensajeCuatro", 3003, 2003);
 insert into mensaje_pqrs values (3004, "2023-10-18 20:30:00", "MensajeCinco", 3004, 2004);
+
+insert into atencion_medica values (4000, "Dolores", "Se remite a", "Dolores", "Acetaminofen", 1000);
+insert into atencion_medica values (4001, "Dolores", "Se remite a", "Dolores", "Acetaminofen", 1001);
+insert into atencion_medica values (4002, "Dolores", "Se remite a", "Dolores", "Acetaminofen", 1002);
+insert into atencion_medica values (4003, "Dolores", "Se remite a", "Dolores", "Acetaminofen", 1003);
+insert into atencion_medica values (4004, "Dolores", "Se remite a", "Dolores", "Acetaminofen", 1004);
+
+insert into dia_libre values (5000, "2023-10-18 20:30:00", 003);
+insert into dia_libre values (5001, "2023-10-18 20:30:00", 004);
+insert into dia_libre values (5002, "2023-10-18 20:30:00", 045);
+insert into dia_libre values (5003, "2023-10-18 20:30:00", 046);
+insert into dia_libre values (5004, "2023-10-18 20:30:00", 047);
