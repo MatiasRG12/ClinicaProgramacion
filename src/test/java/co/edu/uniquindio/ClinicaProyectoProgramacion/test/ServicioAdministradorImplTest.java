@@ -36,13 +36,13 @@ public class ServicioAdministradorImplTest {
     public void crearMedicoTest() throws Exception {
 
         MedicoDTO medicoDTO = new MedicoDTO(
-                "Pepito Perez",
-                "1004875959",
+                "MedicoUno",
+                "1004871090",
                 "Armenia",
                 Especialidad.MEDICINA_GENERAL,
-                "321542154",
-                "pepitoPerez@gmail.com",
-                "123456",
+                "3225205682",
+                "medicoUno@gmail.com",
+                "passwordMedicoUno",
                 Jornada.DIURNA,
                 EstadoMedico.A);
 
@@ -58,10 +58,10 @@ public class ServicioAdministradorImplTest {
     @Sql("classpath:dataset.sql")
     public void actualizarMedicoTest() throws Exception {
 
-       int nuevo = servicioAdministrador.actualizarMedico(new ActualizarMedicoAdminDTO(
-               "1004871093",
-               Especialidad.NEUROLOGIA,
-               Jornada.NOCTURNA));
+        int nuevo = servicioAdministrador.actualizarMedico(new ActualizarMedicoAdminDTO(
+                "1004871092",
+                Especialidad.NEUROLOGIA,
+                Jornada.NOCTURNA));
 
         Assertions.assertTrue(nuevo>0);
     }
@@ -85,7 +85,7 @@ public class ServicioAdministradorImplTest {
 
         DetalleMedicoDTO detalleMedicoDTO;
         try {
-            detalleMedicoDTO = servicioAdministrador.verDetalleMedico("1004871093");
+            detalleMedicoDTO = servicioAdministrador.verDetalleMedico("1004871092");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -98,11 +98,11 @@ public class ServicioAdministradorImplTest {
 
         List<InfoMedicoDTO> listaMedicos;
         try {
-            listaMedicos = servicioAdministrador.filtrarMedicosNombre("Pepe");
+            listaMedicos = servicioAdministrador.filtrarMedicosNombre("MedicoUno");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        Assertions.assertTrue(servicioAdministrador.filtrarMedicosNombre("Pepe").size()>0);
+        Assertions.assertTrue(servicioAdministrador.filtrarMedicosNombre("MedicoUno").size()>0);
     }
 
     @Test
@@ -124,7 +124,7 @@ public class ServicioAdministradorImplTest {
 
         List<InfoMedicoDTO> listaMedicos;
         FiltroMedicosNomEspDTO medicoDTO = new FiltroMedicosNomEspDTO(
-                "Pepe",
+                "MedicoUno",
                 0
         );
         try {
@@ -154,7 +154,7 @@ public class ServicioAdministradorImplTest {
 
         String motivo;
         try {
-            motivo = servicioAdministrador.verMotivoPQRS(123);
+            motivo = servicioAdministrador.verMotivoPQRS(2000);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -166,7 +166,7 @@ public class ServicioAdministradorImplTest {
     public void escogerPQRSTest() throws Exception {
 
         try {
-            servicioAdministrador.escogerPQRS(123, 1004871091);
+            servicioAdministrador.escogerPQRS(2000, 001);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -192,7 +192,7 @@ public class ServicioAdministradorImplTest {
 
         DetallePqrsDTO detallePqrsDTO;
         try {
-            detallePqrsDTO = servicioAdministrador.verDetallePQRS(123);
+            detallePqrsDTO = servicioAdministrador.verDetallePQRS(2000);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -203,13 +203,13 @@ public class ServicioAdministradorImplTest {
     @Sql("classpath:dataset.sql")
     public void convertirMensajesTest() throws Exception {
 
-         List<MensajePqrs> listaMensajes2 = new ArrayList<>();;
-            try {
-                List<MensajePqrsDTO> listaMensajes = servicioAdministrador.convertirMensajes(listaMensajes2);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-            Assertions.assertTrue(servicioAdministrador.convertirMensajes(listaMensajes2).isEmpty());
+        List<MensajePqrs> listaMensajes2 = new ArrayList<>();;
+        try {
+            List<MensajePqrsDTO> listaMensajes = servicioAdministrador.convertirMensajes(listaMensajes2);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        Assertions.assertTrue(servicioAdministrador.convertirMensajes(listaMensajes2).isEmpty());
 
     }
 
@@ -218,7 +218,7 @@ public class ServicioAdministradorImplTest {
     public void cambiarEstadoPQRSTest() throws Exception {
 
         try {
-            servicioAdministrador.cambiarEstadoPQRS(123, 1);
+            servicioAdministrador.cambiarEstadoPQRS(2000, 1);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -244,11 +244,11 @@ public class ServicioAdministradorImplTest {
 
         List<InfoCitaDTOAdmin> listaCitas;
         try {
-            listaCitas = servicioAdministrador.filtrarPorMedico("DavidMedicoPersona");
+            listaCitas = servicioAdministrador.filtrarPorMedico("MedicoDos");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        Assertions.assertTrue(servicioAdministrador.filtrarPorMedico("DavidMedicoPersona").size()>0);
+        Assertions.assertTrue(servicioAdministrador.filtrarPorMedico("MedicoDos").size()>0);
     }
 
 }

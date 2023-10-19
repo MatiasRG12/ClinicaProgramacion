@@ -17,13 +17,13 @@ public class ServicioAutenticacionImplTest {
     @Test
     public void encode(){
         BCryptPasswordEncoder b = new BCryptPasswordEncoder();
-        System.out.println( b.encode("password5") );
+        System.out.println( b.encode("passwordAdminUno") );
     }
 
     @Test
     @Sql("classpath:dataset.sql")
     public void loginTest(){
-        LoginDTO login = new LoginDTO("davidAdmin@gmail.com", "password5");
+        LoginDTO login = new LoginDTO("adminUno@gmail.com", "passwordAdminUno");
         try {
             servicioAutenticacion.login(login);
         } catch (Exception e) {

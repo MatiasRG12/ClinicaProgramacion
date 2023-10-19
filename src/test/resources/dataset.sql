@@ -1,35 +1,33 @@
-insert into usuario values ("medico",123,"password","medicoCorreo@gmail.com");
-insert into usuario values ("medico",987,"password2","medicoCorreo2@gmail.com");
-insert into usuario values ("paciente",1001,"password3","david@gmail.com");
-insert into usuario values ("paciente",1002,"password4","matias@gmail.com");
-insert into usuario values ("admin",1003,"$2a$10$eu.JtteDW44o2QQRupbDH.HIUg75kLVp3McNL3SWYi5ZeXjyi4WqO","davidAdmin@gmail.com");
-insert into usuario values ("admin",1004,"password5","matiasAdmin@gmail.com");
-insert into usuario values ("medico",1005,"password6","davidMedico@gmail.com");
+insert into usuario values ("admin", 001, "$2a$10$6d34h7WxKiV77noBDIcyN.Sb.OkCJ1ORp1PGEEM0dWtvK1EuElPBS", "adminUno@gmail.com");
+insert into usuario values ("admin", 002, "passwordAdminDos", "adminDos@gmail.com");
 
-insert into persona values ("123456789","Armenia","foto","Pepe","3225205639",123);
-insert into persona values ("987654321","Pereira","foto2","Pepe2","3225205638",987);
-insert into persona values ("1004871090","Armenia","fotoDavid","DavidPersona","3225205639",1001);
-insert into persona values ("1005478101","Calarca","fotoMatias","MatiasPersona","3225205638",1002);
-insert into persona values ("1004871093","Armenia","fotoDavidMedico","DavidMedicoPersona","3225205639",1005);
+insert into usuario values ("paciente", 005, "passwordPacienteUno", "pacienteUno@gmail.com");
+insert into usuario values ("paciente", 006, "passwordPacienteDos", "pacienteDos@gmail.com");
+
+insert into usuario values("medico", 003, "passwordMedicoUno", "medicoUno@gmail.com");
+insert into usuario values ("medico", 004, "passwordMedicoDos", "medicoDos@gmail.com");
 
 
-insert into medico values (0,0,0,123);
-insert into medico values (1,1,1,987);
-insert into medico values (2,0,0,1005);
+insert into administrador values ("DavidAdmin", 001);
+insert into administrador values ("MatiasAdmin", 002);
 
-insert into administrador values ("DavidAdmin",1003);
-insert into administrador values ("Matias",1004);
+insert into persona values("1004871090", "Armenia", "fotoPacienteUno", "PacienteUno", "3225205639", 005);
+insert into persona values("1004871091", "Bogota", "fotoPacienteDos", "PacienteDos", "3225205680", 006);
+insert into persona values("1004871092", "Pereira", "fotoMedicoUno", "MedicoUno", "3225205682", 003);
+insert into persona values("1004871093", "Ibague", "fotoMedicoDos", "MedicoDos", "3225205685", 004);
 
-insert into paciente values ("Penicilina", 0, "2002-11-10 20:30:00", 0, 1001);
-insert into paciente values ("Oxigeno", 1, "2002-11-10 20:30:00", 1, 1002);
+insert into paciente values ("Penicilina", 0, "2005-10-18 20:30:00", 0, 005);
+insert into paciente values ("Oxigeno", 0, "2002-10-11 20:30:00", 0, 006);
 
-insert into cita values (963, 0, "2023-10-18 20:30:00", "2023-10-18 13:30:00", "13:30:00", "Dolor general", 123, 1001);
-insert into cita values (159, 0, "2023-10-18 20:30:00", "2023-10-18 13:30:00", "13:30:00", "Dolor general", 987, 1002);
-
-insert into pqrs values (123,"Ensayo pqrs",0,"2023-10-18 14:30:00",0,1003,963);
-insert into pqrs values (987,"Ensayo pqrs2",1,"2023-10-18 15:35:00",0,1004,159);
-
-insert into mensaje_pqrs values (753,"2023-10-18 20:30:00","Ensayo mensaje pqrs",753,123);
-insert into mensaje_pqrs values (357,"2023-10-18 20:30:00","Ensayo mensaje pqrs2",357,987);
+insert into medico values (0,0,0,003);
+insert into medico values (1,1,1,004);
 
 
+insert into cita values (1000, 0, "2005-11-18 20:30:00", "2023-10-18 20:30:00", "13:30:00", "Consulta", 003, 005);
+insert into cita values (1001, 0, "2005-11-18 20:30:00", "2023-10-18 20:30:00", "13:30:00", "ConsultaDos", 004, 006);
+
+insert into pqrs values (2000, "Queja",0, "2023-10-18 20:30:00",0, 001,1000);
+insert into pqrs values (2001, "Peticion",0, "2023-10-18 20:30:00",0, 002,1001);
+
+insert into mensaje_pqrs values (3000, "2023-10-18 20:30:00", "MensajeUno", 3000, 2000);
+insert into mensaje_pqrs values (3001, "2023-10-18 20:30:00", "MensajeDos", 3001, 2001);
