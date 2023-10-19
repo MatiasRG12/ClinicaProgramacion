@@ -174,7 +174,7 @@ public class ServicioPacienteImpl implements ServicioPaciente {
         );
     }
 
-    private List<MensajePqrsDTO> convertirMensajes(List<MensajePqrs> mensajes) {
+    public List<MensajePqrsDTO> convertirMensajes(List<MensajePqrs> mensajes) {
         List<MensajePqrsDTO> listaMensajes = new ArrayList<>();
         for (MensajePqrs m: mensajes) {
             listaMensajes.add(new MensajePqrsDTO(
@@ -266,7 +266,7 @@ public class ServicioPacienteImpl implements ServicioPaciente {
         return disponibles;
     }
 
-    private boolean estaOcupado(List<Cita> citasAgendadas, LocalTime hora) {
+    public boolean estaOcupado(List<Cita> citasAgendadas, LocalTime hora) {
         for(Cita c: citasAgendadas){
             if(c.getHoraCita().equals(hora)){
                 return true;
