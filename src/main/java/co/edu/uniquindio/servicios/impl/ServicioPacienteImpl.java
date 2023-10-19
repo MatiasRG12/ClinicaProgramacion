@@ -236,13 +236,17 @@ public class ServicioPacienteImpl implements ServicioPaciente {
                 fecha = fecha.plusDays(1);
             } else{                                                    //Verificacion si jornada es Nocturna
                 LocalTime hora = LocalTime.of(10, 0);
-                while (hora.isBefore(LocalTime.of(7, 0))) {
-                    if (!estaOcupado(citasAgendadas, hora)) {
-                        horarios.add( LocalDateTime.of( fecha.getYear(), fecha.getMonth(), fecha.getDayOfMonth(), hora.getHour(), hora.getMinute() ) );
+                for (DiaLibre diaLibre : diasLibres) { //No se tienen en cuenta para listar los dias libres
+                    if(!fecha.isEqual(diaLibre.getFecha())) {
+
+                        while (hora.isBefore(LocalTime.of(19, 0))) {
+                            if (!estaOcupado(citasAgendadas, hora)) {
+                                horarios.add(LocalDateTime.of(fecha.getYear(), fecha.getMonth(), fecha.getDayOfMonth(), hora.getHour(), hora.getMinute()));
+                            }
+                            hora = hora.plusMinutes(30);
+                        }
                     }
-                    hora = hora.plusMinutes(30);
                 }
-                fecha = fecha.plusDays(1);
             }
         }
         //Se crea una lista de ItemFechaMedicoDTO y se rellena con cada uno de los elementos de la lista
