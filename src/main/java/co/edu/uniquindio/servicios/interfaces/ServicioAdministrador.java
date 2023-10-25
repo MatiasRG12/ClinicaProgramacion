@@ -29,13 +29,13 @@ public interface ServicioAdministrador {
 
     List<InfoPqrsDTO> filtrarPQRSEstado(int estado) throws Exception;
 
-    String verMotivoPQRS(int codigoPqrs) throws Exception; //REVISAR
+    String verMotivoPQRS(int codigoPqrs) throws Exception;
 
-    void escogerPQRS(int codigo, int codigoAdmin) throws Exception;
+    void escogerPQRS(EscogerPqrsDTO dto) throws Exception;
 
     DetallePqrsDTO verDetallePQRS(int codigo) throws Exception;
 
-    void cambiarEstadoPQRS(int codigoPqrs, int estado) throws Exception;
+    void cambiarEstadoPQRS(CambiarEstadoPqrsDTO dto) throws Exception;
 
     //-------------------------------------------------------------------------------------------//
 

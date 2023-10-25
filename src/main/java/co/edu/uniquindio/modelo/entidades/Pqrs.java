@@ -24,7 +24,7 @@ public class Pqrs implements Serializable{
     @EqualsAndHashCode.Include
     private int codigo;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private TipoPqrs tipo;
 
     @Column(nullable = false)
@@ -33,7 +33,7 @@ public class Pqrs implements Serializable{
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime fechaCreacion;
 
-    @Column(length = 500)
+    @Column(length = 500, nullable = false)
     private String descripcion;
 
     @ManyToOne

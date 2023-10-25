@@ -45,18 +45,6 @@ public class ServicioMedicoImpl implements ServicioMedico {
     }
 
     @Override
-    public void cambiarContrasenia(CambiarContraseniaDTO dto) throws Exception {
-        Optional<Medico> opcional = medicoRepo.findById(dto.codigo());
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        if(opcional.isEmpty() || !(encoder.matches(opcional.get().getContrasenia(), dto.contraseniaActual()))){
-            throw new Exception();
-        }
-        Medico m = opcional.get();
-        m.setContrasenia(encoder.encode(dto.contraseniaNueva()));
-        medicoRepo.save(m);
-    }
-
-    @Override
     public List<InfoCitaDTOMedico> listarCitasHoy(int codigoMedico) throws Exception {
         List<Cita> listaAux =  citaRepo.findAllByMedicoCodigoAndFechaCitaEquals(codigoMedico,LocalDateTime.now());
         if(listaAux.isEmpty()){

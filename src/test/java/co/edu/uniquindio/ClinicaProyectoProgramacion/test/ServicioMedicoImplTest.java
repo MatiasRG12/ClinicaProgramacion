@@ -35,20 +35,7 @@ public class ServicioMedicoImplTest {
         Assertions.assertTrue(nuevo>0);
     }
 
-    @Test
-    @Sql("classpath:dataset.sql")
-    public void cambiarContraseniaTest() throws Exception {
-        try {
-            servicioMedico.cambiarContrasenia(new CambiarContraseniaDTO(
-                    003,
-                    "passwordMedicoUno",
-                    "nuevaContrasenia"
-            ));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
 
-    }
 
     @Test
     @Sql("classpath:dataset.sql")

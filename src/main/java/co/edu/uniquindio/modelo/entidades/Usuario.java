@@ -14,17 +14,17 @@ import java.io.Serializable;
 public class Usuario implements Serializable {
 
     @Id
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
     @EqualsAndHashCode.Include
     private int codigo;
 
     @EqualsAndHashCode.Include
-    @Column(length = 30, unique = true)
+    @Column(length = 50, unique = true)
     private String email;
 
     @EqualsAndHashCode.Include
-    @Column(name = "contrasenia", nullable = false)
+    @Column(name = "contrasenia", nullable = false, unique = true)
     private String contrasenia;
 
 }

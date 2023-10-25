@@ -5,8 +5,9 @@ import jakarta.validation.constraints.NotBlank;
 
 public record EmailDTO(
         @NotBlank
+        @Email
         String destinatario,
-        @NotBlank @Email
+        @NotBlank
         String asunto,
         @NotBlank
         String mensaje

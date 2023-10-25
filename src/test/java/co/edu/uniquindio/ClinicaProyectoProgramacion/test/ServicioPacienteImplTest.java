@@ -10,6 +10,7 @@ import co.edu.uniquindio.modelo.entidades.MensajePqrs;
 import co.edu.uniquindio.modelo.enumeraciones.Eps;
 import co.edu.uniquindio.modelo.enumeraciones.Especialidad;
 import co.edu.uniquindio.modelo.enumeraciones.TipoSangre;
+import co.edu.uniquindio.servicios.impl.ServicioGeneralImpl;
 import co.edu.uniquindio.servicios.impl.ServicioPacienteImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,8 @@ public class ServicioPacienteImplTest {
 
     @Autowired
     private ServicioPacienteImpl servicioPaciente;
+    @Autowired
+    private ServicioGeneralImpl servicioGeneral;
 
     @Test
     @Sql("classpath:dataset.sql")
@@ -84,7 +87,7 @@ public class ServicioPacienteImplTest {
     @Sql("classpath:dataset.sql")
     public void cambiarPasswordTest() throws Exception {
         try {
-            servicioPaciente.cambiarPassword(new CambiarContraseniaDTO(
+            servicioGeneral.cambiarPassword(new CambiarContraseniaDTO(
                     005,
                     "passwordPacienteCinco",
                     "newPasswordPacienteCinco"
@@ -167,11 +170,11 @@ public class ServicioPacienteImplTest {
     public void listarMedicosEspecialidadTest() throws Exception {
         List<ItemMedicoDTO> medicos;
         try {
-            medicos = servicioPaciente.listarMedicosEspecialidad(Especialidad.MEDICINA_GENERAL);
+            medicos = servicioPaciente.listarMedicosEspecialidad(Especialidad.MEDICINA_GENERAL.ordinal());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        Assertions.assertTrue(servicioPaciente.listarMedicosEspecialidad(Especialidad.MEDICINA_GENERAL).size()>0);
+        Assertions.assertTrue(servicioPaciente.listarMedicosEspecialidad(Especialidad.MEDICINA_GENERAL.ordinal()).size()>0);
 
     }
 

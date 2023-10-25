@@ -31,7 +31,7 @@ public class ServicioPacienteImpl implements ServicioPaciente {
     private final PqrsRepo pqrsRepo;
     private final MedicoRepo medicoRepo;
     private final DiaLibreRepo diaLibreRepo;
-    private final ServicioEmail servicioEmail;
+
 
     @Override
     public int registrarPaciente(RegistroPacienteDTO pacienteDTO) throws Exception {
@@ -83,24 +83,7 @@ public class ServicioPacienteImpl implements ServicioPaciente {
         pacienteRepo.delete(paciente);
     }
 
-    @Override //POR AHORA SOLO SE ENVIA ESE MENSAJE SIN UN ENLACE YA QUE NO HAY CONTROLADORES AUN (NO HAY MAPEOS)
-    public void enviarLinkRecuperacion(String correo) throws Exception{
-        String asunto = "Clinica Salvese Quien Pueda - Recuperacion de Cuenta";
-        String mensaje = "Hola, haz click en el siguiente enlace para recuperar tu cuenta: ";
-        servicioEmail.enviarCorreo(new EmailDTO(correo,asunto,mensaje));
-    }
 
-    @Override
-    public void cambiarPassword(CambiarContraseniaDTO dto) throws Exception {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        Optional<Paciente> opcional = pacienteRepo.findById(dto.codigo());
-        if(opcional.isEmpty()||!(encoder.matches(opcional.get().getContrasenia(), dto.contraseniaActual()))){
-            throw new Exception("error, no se puede cambiar la contraseña");
-        }
-        Paciente paciente = opcional.get();
-        paciente.setContrasenia(encoder.encode(dto.contraseniaNueva()));
-        pacienteRepo.save(paciente);
-    }
 
     @Override
     public int crearPQRS(CrearPqrsDTO pqrsDTO) throws Exception {
@@ -186,8 +169,9 @@ public class ServicioPacienteImpl implements ServicioPaciente {
     }
 
     @Override
-    public List<ItemMedicoDTO> listarMedicosEspecialidad(Especialidad especialidad) throws Exception{
-        List<Medico> listaAux = medicoRepo.findAllByEspecialidad(especialidad);
+    public List<ItemMedicoDTO> listarMedicosEspecialidad(int codigoEspecialidad) throws Exception{
+        Especialidad e = Especialidad.values()[codigoEspecialidad];
+        List<Medico> listaAux = medicoRepo.findAllByEspecialidad(e);
         if(listaAux.isEmpty()){
             throw new Exception("No hay medicos para mostrar");
         }

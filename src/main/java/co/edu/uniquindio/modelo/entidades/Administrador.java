@@ -14,6 +14,7 @@ import java.util.List;
 
 public class Administrador extends Usuario implements Serializable {
 
+    @Column(nullable = false, length = 40)
     private String nombre;
 
     @OneToMany(mappedBy = "administrador")

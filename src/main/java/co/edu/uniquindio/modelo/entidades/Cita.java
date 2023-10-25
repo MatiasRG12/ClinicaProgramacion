@@ -26,15 +26,17 @@ public class Cita implements Serializable {
     private int codigo;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(nullable = false)
     private LocalDateTime fechaCreacion;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(nullable = false)
     private LocalDateTime fechaCita;
 
     @Column(nullable = false)
     private LocalTime horaCita;
 
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
     private String motivo;
 
     @Column(nullable = false)

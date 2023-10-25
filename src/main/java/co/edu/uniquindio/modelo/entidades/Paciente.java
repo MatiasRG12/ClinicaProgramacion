@@ -20,7 +20,7 @@ public class Paciente extends Persona implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime fechaNacimiento;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private TipoSangre tipoSangre;
 
     private String alergia;

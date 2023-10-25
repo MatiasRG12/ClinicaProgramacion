@@ -24,6 +24,7 @@ public class DiaLibre implements Serializable {
     private int codigo;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(nullable = false)
     private LocalDateTime fecha;
 
 

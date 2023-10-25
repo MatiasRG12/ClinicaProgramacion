@@ -188,9 +188,9 @@ public class ServicioAdministradorImpl implements ServicioAdministrador {
     }
 
     @Override
-    public void escogerPQRS(int codigoPqrs, int codigoAdmin) throws Exception {
-        Optional<Pqrs> opcionalPqrs = pqrsRepo.findById(codigoPqrs);
-        Optional<Administrador> opcionalAdmin= adminRepo.findById(codigoAdmin);
+    public void escogerPQRS(EscogerPqrsDTO dto) throws Exception {
+        Optional<Pqrs> opcionalPqrs = pqrsRepo.findById(dto.codigoPQRS());
+        Optional<Administrador> opcionalAdmin= adminRepo.findById(dto.codigoAdmin());
         if(opcionalPqrs.isEmpty() || opcionalAdmin.isEmpty()){
             throw new Exception();
         }
@@ -208,12 +208,14 @@ public class ServicioAdministradorImpl implements ServicioAdministrador {
         }
         List<InfoPqrsDTO> pqrsEncontrados = new ArrayList<>();
         for (Pqrs p : listaPqrs) {
-            pqrsEncontrados.add(new InfoPqrsDTO(
-                    p.getCodigo(),
-                    p.getTipo(),
-                    p.getEstado(),
-                    p.getFechaCreacion()
-            ));
+            if((p.getAdministrador() == null)){ //SOLO LISTA LOS QUE NO TENGAN ADMINISTRADOR
+                pqrsEncontrados.add(new InfoPqrsDTO(
+                        p.getCodigo(),
+                        p.getTipo(),
+                        p.getEstado(),
+                        p.getFechaCreacion()
+                ));
+            }
         }
         return pqrsEncontrados;
     }
@@ -235,7 +237,7 @@ public class ServicioAdministradorImpl implements ServicioAdministrador {
         );
     }
 
-    public List<MensajePqrsDTO> convertirMensajes(List<MensajePqrs> mensajes) { //Estaba en private, lo puse public
+    public List<MensajePqrsDTO> convertirMensajes(List<MensajePqrs> mensajes) {
         List<MensajePqrsDTO> listaMensajes = new ArrayList<>();
         for (MensajePqrs m: mensajes) {
             listaMensajes.add(new MensajePqrsDTO(
@@ -247,13 +249,13 @@ public class ServicioAdministradorImpl implements ServicioAdministrador {
     }
 
     @Override
-    public void cambiarEstadoPQRS(int codigoPqrs, int estado) throws Exception {
-        Optional<Pqrs> opcional = pqrsRepo.findById(codigoPqrs);
+    public void cambiarEstadoPQRS(CambiarEstadoPqrsDTO dto) throws Exception {
+        Optional<Pqrs> opcional = pqrsRepo.findById(dto.codigoPqrs());
         if(opcional.isEmpty()){
             throw new Exception("No es posible cambiar el estado");
         }
         Pqrs p = opcional.get();
-        p.setEstado(EstadoPqrs.values()[estado]);
+        p.setEstado(EstadoPqrs.values()[dto.estado()]);
         pqrsRepo.save(p);
     }
 

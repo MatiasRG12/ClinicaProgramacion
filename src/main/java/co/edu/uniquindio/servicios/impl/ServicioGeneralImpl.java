@@ -1,15 +1,16 @@
 package co.edu.uniquindio.servicios.impl;
 
+import co.edu.uniquindio.dto.CompartidosDTOs.CambiarContraseniaDTO;
 import co.edu.uniquindio.dto.CompartidosDTOs.DetalleCitaDTO;
+import co.edu.uniquindio.dto.CompartidosDTOs.ReestablecerContraseniaDTO;
 import co.edu.uniquindio.dto.CompartidosDTOs.RegistroRespuestaDTO;
-import co.edu.uniquindio.modelo.entidades.Cita;
-import co.edu.uniquindio.modelo.entidades.MensajePqrs;
-import co.edu.uniquindio.modelo.entidades.Pqrs;
-import co.edu.uniquindio.repositorios.CitaRepo;
-import co.edu.uniquindio.repositorios.MensajePqrsRepo;
-import co.edu.uniquindio.repositorios.PqrsRepo;
+import co.edu.uniquindio.dto.extrasDTOs.EmailDTO;
+import co.edu.uniquindio.modelo.entidades.*;
+import co.edu.uniquindio.repositorios.*;
+import co.edu.uniquindio.servicios.interfaces.ServicioEmail;
 import co.edu.uniquindio.servicios.interfaces.ServicioGeneral;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -22,6 +23,10 @@ public class ServicioGeneralImpl implements ServicioGeneral {
     private final CitaRepo citaRepo;
     private final PqrsRepo pqrsRepo;
     private final MensajePqrsRepo mensajePqrsRepo;
+    private final PacienteRepo pacienteRepo;
+    private final UsuarioRepo usuarioRepo;
+
+    private final ServicioEmail servicioEmail;
 
     @Override
     public DetalleCitaDTO verDetalleCita(int codigoCita) throws Exception {
@@ -43,7 +48,7 @@ public class ServicioGeneralImpl implements ServicioGeneral {
         );
     }
 
-    @Override //REVISAR
+    @Override
     public int responderPQRS(RegistroRespuestaDTO dto) throws Exception {
         Optional<Pqrs> opcional = pqrsRepo.findById(dto.codigoPqrs());
         if(opcional.isEmpty()){
@@ -56,5 +61,37 @@ public class ServicioGeneralImpl implements ServicioGeneral {
 
         MensajePqrs respuesta = mensajePqrsRepo.save(mensajeNuevo);
         return respuesta.getCodigo();
+    }
+
+    @Override //POR AHORA SOLO SE ENVIA ESE MENSAJE SIN UN ENLACE YA QUE NO HAY CONTROLADORES AUN (NO HAY MAPEOS)
+    public void enviarLinkRecuperacion(String correo) throws Exception{
+        String asunto = "Clinica Salvese Quien Pueda - Recuperacion de Cuenta";
+        String mensaje = "Hola, haz click en el siguiente enlace para recuperar tu cuenta: ";
+        servicioEmail.enviarCorreo(new EmailDTO(correo,asunto,mensaje));
+    }
+
+    @Override
+    public int reestablecerContrasenia(ReestablecerContraseniaDTO dto) throws Exception {
+        Optional<Usuario> opcional = usuarioRepo.findByEmail(dto.correo());
+        if(opcional.isEmpty()){
+            throw new Exception();
+        }
+        Usuario usuario = opcional.get();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        usuario.setContrasenia(encoder.encode(dto.ContraseniaNueva()));
+        usuarioRepo.save(usuario);
+        return usuario.getCodigo();
+    }
+
+    @Override
+    public void cambiarPassword(CambiarContraseniaDTO dto) throws Exception {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        Optional<Usuario> opcional = usuarioRepo.findById(dto.codigo());
+        if(opcional.isEmpty()||!(encoder.matches(opcional.get().getContrasenia(), dto.contraseniaActual()))){
+            throw new Exception("error, no se puede cambiar la contraseña");
+        }
+        Usuario usuarioEncontrado = opcional.get();
+        usuarioEncontrado.setContrasenia(encoder.encode(dto.contraseniaNueva()));
+        usuarioRepo.save(usuarioEncontrado);
     }
 }

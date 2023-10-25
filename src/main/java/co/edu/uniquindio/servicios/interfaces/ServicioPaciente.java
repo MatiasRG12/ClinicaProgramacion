@@ -9,15 +9,13 @@ import co.edu.uniquindio.modelo.enumeraciones.Especialidad;
 import java.util.List;
 
 public interface ServicioPaciente {
+
+    //Su uso es en NoAuthController ya que no requiere token para su uso
     int registrarPaciente(RegistroPacienteDTO pacienteDTO) throws Exception;
 
     int editarInfoBasica(EditarPerfilPacienteDTO pacienteDTO) throws Exception;
 
     void eliminarCuenta(EliminarCuentaDTO eCuentaDTO) throws Exception;
-
-    void enviarLinkRecuperacion(String correo) throws Exception;
-
-    void cambiarPassword(CambiarContraseniaDTO dto) throws Exception;
 
     int crearPQRS(CrearPqrsDTO pqrsDTO) throws Exception;
 
@@ -31,7 +29,7 @@ public interface ServicioPaciente {
 
     int agendarCita(AgendarCitaDTO citaDTO)throws Exception;
 
-    List<ItemMedicoDTO> listarMedicosEspecialidad(Especialidad especialidad) throws Exception;
+    List<ItemMedicoDTO> listarMedicosEspecialidad(int codigoEspecialidad) throws Exception;
 
     List<InfoCitaDTO> listarCitasPaciente(int codigoPaciente) throws Exception;
 
