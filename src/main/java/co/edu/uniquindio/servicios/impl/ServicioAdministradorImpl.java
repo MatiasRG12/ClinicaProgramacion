@@ -146,7 +146,7 @@ public class ServicioAdministradorImpl implements ServicioAdministrador {
         Especialidad e = Especialidad.values()[dto.codigoEspecialidad()];
         List<Medico> listaAux = medicoRepo.findAllByNombreAndEspecialidad(dto.nombre(),e);
         if(listaAux.isEmpty()){
-            throw new Exception();
+            throw new Exception();//doctor.list.empty
         }
         List<InfoMedicoDTO> listaMedicos = new ArrayList<>();
         for (Medico m : listaAux) {
@@ -280,7 +280,7 @@ public class ServicioAdministradorImpl implements ServicioAdministrador {
     public List<InfoCitaDTOAdmin> filtrarPorMedico(String nombreMedico) throws Exception {
         List<Cita> listaAux = citaRepo.findAllByMedicoNombre(nombreMedico);
         if(listaAux.isEmpty()){
-            throw new Exception();
+            throw new Exception();//No hay citas atendidas por :NombreMedico
         }
         List<InfoCitaDTOAdmin> listaCitas = new ArrayList<>();
         for (Cita c : listaAux) {

@@ -265,7 +265,7 @@ public class ServicioPacienteImpl implements ServicioPaciente {
         Optional<Medico>medicoOptional = medicoRepo.findById(citaDTO.codigoMedico());
         Optional<Paciente>pacienteOptional = pacienteRepo.findById(citaDTO.codigoPaciente());
         if(medicoOptional.isEmpty()||pacienteOptional.isEmpty()){
-            throw new Exception("Error, no se puede registrar el medico");
+            throw new Exception("Error");
         }
         Cita citaNueva = new Cita();
         citaNueva.setFechaCreacion(LocalDateTime.now());
