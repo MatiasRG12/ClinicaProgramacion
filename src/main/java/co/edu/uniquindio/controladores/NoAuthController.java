@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 @RequiredArgsConstructor
 @RequestMapping("/")
-public class NoAuthController {
+public class   NoAuthController {
 
     private final ServicioGeneral servicioGeneral;
     private final ServicioPaciente servicioPaciente;
