@@ -6,6 +6,8 @@ import co.edu.uniquindio.dto.CompartidosDTOs.ReestablecerContraseniaDTO;
 import co.edu.uniquindio.dto.CompartidosDTOs.RegistroRespuestaDTO;
 import co.edu.uniquindio.dto.extrasDTOs.EmailDTO;
 import co.edu.uniquindio.modelo.entidades.*;
+import co.edu.uniquindio.modelo.enumeraciones.Eps;
+import co.edu.uniquindio.modelo.enumeraciones.TipoSangre;
 import co.edu.uniquindio.repositorios.*;
 import co.edu.uniquindio.servicios.interfaces.ServicioEmail;
 import co.edu.uniquindio.servicios.interfaces.ServicioGeneral;
@@ -14,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service("ServicioGeneral")
@@ -83,6 +86,7 @@ public class ServicioGeneralImpl implements ServicioGeneral {
         return usuario.getCodigo();
     }
 
+
     @Override
     public void cambiarPassword(CambiarContraseniaDTO dto) throws Exception {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -94,4 +98,25 @@ public class ServicioGeneralImpl implements ServicioGeneral {
         usuarioEncontrado.setContrasenia(encoder.encode(dto.contraseniaNueva()));
         usuarioRepo.save(usuarioEncontrado);
     }
+
+    //Implementacion de los metodos que listan EPS y TipoSangre
+    @Override
+    public List<Eps> listarEps() throws Exception {
+        List<Eps> listaEps = List.of(Eps.values());
+        if (listaEps.isEmpty()){
+            throw new Exception("No hay Eps");
+        }
+        return listaEps;
+    }
+
+    @Override
+    public List<TipoSangre> listarTiposSangre() throws Exception {
+        List<TipoSangre> listaTipoSangre = List.of(TipoSangre.values());
+        if (listaTipoSangre.isEmpty()){
+            throw new Exception("No hay tipos de sangre");
+        }
+        return listaTipoSangre;
+    }
+
+
 }
