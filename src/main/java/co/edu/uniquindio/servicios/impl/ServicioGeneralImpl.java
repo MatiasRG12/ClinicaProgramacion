@@ -109,6 +109,7 @@ public class ServicioGeneralImpl implements ServicioGeneral {
         return listaEps;
     }
 
+
     @Override
     public List<TipoSangre> listarTiposSangre() throws Exception {
         List<TipoSangre> listaTipoSangre = List.of(TipoSangre.values());
@@ -117,6 +118,15 @@ public class ServicioGeneralImpl implements ServicioGeneral {
         }
         return listaTipoSangre;
     }
+
+    /**
+    @Override
+    public List<TipoSangre> listarTiposSangre() {
+
+        return List.of(TipoSangre.values());
+    } */
+
+
 
 
 }

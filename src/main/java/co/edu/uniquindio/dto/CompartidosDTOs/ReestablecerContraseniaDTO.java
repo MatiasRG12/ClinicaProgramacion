@@ -2,7 +2,7 @@ package co.edu.uniquindio.dto.CompartidosDTOs;
 
 public record ReestablecerContraseniaDTO(
 
-        int correo,
+        String correo,
         String ContraseniaNueva
 
 ) {
