@@ -102,11 +102,7 @@ public class ServicioGeneralImpl implements ServicioGeneral {
     //Implementacion de los metodos que listan EPS y TipoSangre
     @Override
     public List<Eps> listarEps() throws Exception {
-        List<Eps> listaEps = List.of(Eps.values());
-        if (listaEps.isEmpty()){
-            throw new Exception("No hay Eps");
-        }
-        return listaEps;
+        return List.of(Eps.values());
     }
 
     @Override
