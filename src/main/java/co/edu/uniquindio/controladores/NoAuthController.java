@@ -67,9 +67,7 @@ public class   NoAuthController {
 
     @GetMapping("/listarTipoSangre")
     public ResponseEntity<MensajeDTO<List<TipoSangre>>> listarTipoSangre() throws Exception{
-        //return ResponseEntity
-               //.status(HttpStatus.OK)
-               //.body(new MensajeDTO<>(false,ms.getMessage("",null,LocaleContextHolder.getLocale()),servicioGeneral.listarTiposSangre()));
+
         return ResponseEntity.ok().body( new MensajeDTO<>(false, "",servicioGeneral.listarTiposSangre()));
     }
 

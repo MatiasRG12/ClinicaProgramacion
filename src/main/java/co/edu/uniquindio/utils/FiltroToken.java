@@ -25,10 +25,7 @@ public class FiltroToken extends OncePerRequestFilter {
     private final JWTUtils jwtUtils;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse res = (HttpServletResponse) response;
-
+    protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain filterChain) throws ServletException, IOException {
 
         res.addHeader("Access-Control-Allow-Origin", "*");
         res.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
@@ -69,9 +66,8 @@ public class FiltroToken extends OncePerRequestFilter {
                 crearRespuestaError(e.getMessage(), HttpServletResponse.SC_INTERNAL_SERVER_ERROR, res);
             }
             if(!error){
-                filterChain.doFilter(request, response);
+                filterChain.doFilter(req, res);
             }
-            filterChain.doFilter(request, response);
 
         }
     }

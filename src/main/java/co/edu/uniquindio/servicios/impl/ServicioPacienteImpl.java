@@ -66,7 +66,7 @@ public class ServicioPacienteImpl implements ServicioPaciente {
         pacienteEncontrado.setCiudad(pacienteDTO.ciudad());
         pacienteEncontrado.setTelefono(pacienteDTO.telefono());
         pacienteEncontrado.setAlergia(pacienteDTO.alergias());
-        pacienteEncontrado.setFoto(pacienteDTO.urlFoto());
+        pacienteEncontrado.setFoto(pacienteDTO.fotoUrl());
 
         pacienteRepo.save(pacienteEncontrado);
         return pacienteEncontrado.getCodigo();

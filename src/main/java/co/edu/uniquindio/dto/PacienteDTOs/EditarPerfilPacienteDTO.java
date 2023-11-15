@@ -15,7 +15,7 @@ public record EditarPerfilPacienteDTO(
 
         String alergias,
 
-        String urlFoto
+        String fotoUrl
 
 ) {
 }
