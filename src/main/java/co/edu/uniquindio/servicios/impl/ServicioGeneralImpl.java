@@ -7,6 +7,7 @@ import co.edu.uniquindio.dto.CompartidosDTOs.RegistroRespuestaDTO;
 import co.edu.uniquindio.dto.extrasDTOs.EmailDTO;
 import co.edu.uniquindio.modelo.entidades.*;
 import co.edu.uniquindio.modelo.enumeraciones.Eps;
+import co.edu.uniquindio.modelo.enumeraciones.Especialidad;
 import co.edu.uniquindio.modelo.enumeraciones.TipoSangre;
 import co.edu.uniquindio.repositorios.*;
 import co.edu.uniquindio.servicios.interfaces.ServicioEmail;
@@ -118,6 +119,14 @@ public class ServicioGeneralImpl implements ServicioGeneral {
             throw new Exception("No hay tipos de sangre");
         }
         return listaTipoSangre;
+    }
+
+    public List<Especialidad> listarEspecialidades() throws Exception{
+        List<Especialidad> listaEspecialidades = List.of(Especialidad.values());
+        if (listaEspecialidades.isEmpty()){
+            throw new Exception("No hay especialidades");
+        }
+        return listaEspecialidades;
     }
 
     /**

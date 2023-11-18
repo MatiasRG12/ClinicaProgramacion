@@ -4,8 +4,11 @@ import co.edu.uniquindio.dto.CompartidosDTOs.ReestablecerContraseniaDTO;
 import co.edu.uniquindio.dto.PacienteDTOs.RegistroPacienteDTO;
 import co.edu.uniquindio.dto.extrasDTOs.LoginDTO;
 import co.edu.uniquindio.dto.extrasDTOs.MensajeDTO;
+import co.edu.uniquindio.dto.extrasDTOs.TokenDTO;
 import co.edu.uniquindio.modelo.enumeraciones.Eps;
+import co.edu.uniquindio.modelo.enumeraciones.Especialidad;
 import co.edu.uniquindio.modelo.enumeraciones.TipoSangre;
+import co.edu.uniquindio.servicios.interfaces.ServicioAutenticacion;
 import co.edu.uniquindio.servicios.interfaces.ServicioGeneral;
 import co.edu.uniquindio.servicios.interfaces.ServicioPaciente;
 import jakarta.validation.Valid;
@@ -26,21 +29,29 @@ import java.util.List;
 @RequestMapping("/api/auth")
 public class   NoAuthController {
 
+    private final ServicioAutenticacion servicioAutenticacion;
     private final ServicioGeneral servicioGeneral;
     private final ServicioPaciente servicioPaciente;
     private final MessageSource ms;
 
     @PostMapping("/login")
-    void login(LoginDTO loginDTO) throws Exception{
+    ResponseEntity<MensajeDTO<TokenDTO>> login(@RequestBody LoginDTO loginDTO) throws Exception{
+        TokenDTO codigoRegistrado = servicioAutenticacion.login (loginDTO);
+        //return ResponseEntity
+        //  .status(HttpStatus.OK)
+        //  .body(new MensajeDTO<>(false,ms.getMessage("",null, LocaleContextHolder.getLocale()),codigoRegistrado));
 
+        return ResponseEntity.ok().body( new MensajeDTO<>(false, "",codigoRegistrado));
     }
 
     @PostMapping("/registrarse")
     public ResponseEntity<MensajeDTO<Integer>> registrarPaciente(@Valid @RequestBody RegistroPacienteDTO pacienteDTO) throws Exception{
         int codigoRegistrado = servicioPaciente.registrarPaciente(pacienteDTO);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MensajeDTO<>(false,ms.getMessage("",null, LocaleContextHolder.getLocale()),codigoRegistrado));
+        //return ResponseEntity
+              //  .status(HttpStatus.OK)
+              //  .body(new MensajeDTO<>(false,ms.getMessage("",null, LocaleContextHolder.getLocale()),codigoRegistrado));
+
+        return ResponseEntity.ok().body( new MensajeDTO<>(false, "",codigoRegistrado));
     }
 
     @PostMapping("/recuperarCuenta/enviarCorreo/{correo}")
@@ -70,5 +81,12 @@ public class   NoAuthController {
 
         return ResponseEntity.ok().body( new MensajeDTO<>(false, "",servicioGeneral.listarTiposSangre()));
     }
+
+    @GetMapping("/listarEspecialidades")
+    public ResponseEntity<MensajeDTO<List<Especialidad>>> listarEspecialidades() throws Exception{
+
+        return ResponseEntity.ok().body( new MensajeDTO<>(false, "",servicioGeneral.listarEspecialidades()));
+    }
+
 
 }

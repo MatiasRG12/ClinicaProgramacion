@@ -7,6 +7,7 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -18,7 +19,7 @@ import java.util.List;
 public class Paciente extends Persona implements Serializable {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime fechaNacimiento;
+    private LocalDate fechaNacimiento;
 
     @Column(nullable = false, unique = true)
     private TipoSangre tipoSangre;

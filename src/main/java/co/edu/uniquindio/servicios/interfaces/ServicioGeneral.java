@@ -5,6 +5,7 @@ import co.edu.uniquindio.dto.CompartidosDTOs.DetalleCitaDTO;
 import co.edu.uniquindio.dto.CompartidosDTOs.ReestablecerContraseniaDTO;
 import co.edu.uniquindio.dto.CompartidosDTOs.RegistroRespuestaDTO;
 import co.edu.uniquindio.modelo.enumeraciones.Eps;
+import co.edu.uniquindio.modelo.enumeraciones.Especialidad;
 import co.edu.uniquindio.modelo.enumeraciones.TipoSangre;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +34,8 @@ public interface ServicioGeneral {
     List<Eps> listarEps() throws Exception;
 
     List<TipoSangre> listarTiposSangre() throws Exception;
+
+    List<Especialidad> listarEspecialidades() throws Exception;
 
 
 

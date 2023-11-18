@@ -25,12 +25,12 @@ public class ControllerImagenes {
     @PostMapping("/subir")
     public ResponseEntity<MensajeDTO<Map>> subir(@RequestParam("file") MultipartFile imagen) throws Exception{
         Map respuesta = servicioImagenes.subirImagen(imagen);
-        return ResponseEntity.ok().body(new MensajeDTO<>(false, null, respuesta));
+        return ResponseEntity.ok().body(new MensajeDTO<>(false, "", respuesta));
     }
 
     @DeleteMapping("/eliminar")
     public ResponseEntity<MensajeDTO<Map>> eliminar(@RequestBody ImagenDTO imagenDTO) throws Exception{
         Map respuesta = servicioImagenes.eliminarImagen( imagenDTO.id() );
-        return ResponseEntity.ok().body(new MensajeDTO<>(false,null,respuesta ));
+        return ResponseEntity.ok().body(new MensajeDTO<>(false,"",respuesta ));
     }
 }

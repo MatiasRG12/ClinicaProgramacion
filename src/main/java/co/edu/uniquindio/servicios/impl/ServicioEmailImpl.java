@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service("ServicioEmail")
 @AllArgsConstructor
-public class ServicioEmailImpl implements ServicioEmail {
+public class  ServicioEmailImpl implements ServicioEmail {
 
     private final JavaMailSender javaMailSender;
 

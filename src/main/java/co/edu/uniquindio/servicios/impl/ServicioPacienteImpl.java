@@ -31,12 +31,15 @@ public class ServicioPacienteImpl implements ServicioPaciente {
     private final PqrsRepo pqrsRepo;
     private final MedicoRepo medicoRepo;
     private final DiaLibreRepo diaLibreRepo;
+    private final PersonaRepo personaRepo;
 
 
     @Override
     public int registrarPaciente(RegistroPacienteDTO pacienteDTO) throws Exception {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        if(pacienteRepo.findByCedula(pacienteDTO.cedula()).isPresent()){
+        Persona opcional = personaRepo.buscarPorCedula(pacienteDTO.cedula());
+        if(opcional != null){
+            System.out.println(pacienteDTO.cedula());
             throw new Exception("Ya existe el usuario");
         }
         Paciente pacienteNuevo = new Paciente();
