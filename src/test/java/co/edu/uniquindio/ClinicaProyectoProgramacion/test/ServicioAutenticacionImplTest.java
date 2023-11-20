@@ -19,13 +19,13 @@ public class ServicioAutenticacionImplTest {
     @Test
     public void encode(){
         BCryptPasswordEncoder b = new BCryptPasswordEncoder();
-        System.out.println( b.encode("passwordAdminUno") );
+        System.out.println( b.encode("medicoUno") );
     }
 
     @Test
     @Sql("classpath:dataset.sql")
     public void loginTest(){
-        LoginDTO login = new LoginDTO("adminUno@gmail.com", "passwordAdminUno");
+        LoginDTO login = new LoginDTO("paciente@gmail.com", "pacienteUno");
         try {
             TokenDTO tokenDTO = servicioAutenticacion.login(login);
             Assertions.assertNotNull(tokenDTO);

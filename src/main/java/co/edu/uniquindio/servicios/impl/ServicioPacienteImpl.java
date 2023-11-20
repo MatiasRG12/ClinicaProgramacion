@@ -93,10 +93,10 @@ public class ServicioPacienteImpl implements ServicioPaciente {
         Optional<Cita> opcional = citaRepo.findById(pqrsDTO.codigoCita());
         Long cantidadPqrsActivos = pqrsRepo.contarActivos(EstadoPqrs.EN_PROCESO);
         if(opcional.isEmpty() || cantidadPqrsActivos >=3){
-            throw new Exception("Error");
+            throw new Exception("Error, no puede tener mas de tres solicitudes en estado EN PROCESO");
         }
         Pqrs pqrs = new Pqrs();
-        pqrs.setTipo(TipoPqrs.values()[pqrsDTO.tipoSolicitud()]);
+        pqrs.setTipo(pqrsDTO.tipoSolicitud());
         pqrs.setEstado(EstadoPqrs.NUEVO);
         pqrs.setFechaCreacion(LocalDateTime.now());
         pqrs.setCodigoCita(opcional.get());
@@ -118,7 +118,8 @@ public class ServicioPacienteImpl implements ServicioPaciente {
                     p.getCodigo(),
                     p.getTipo(),
                     p.getEstado(),
-                    p.getFechaCreacion()
+                    p.getFechaCreacion(),
+                    p.getDescripcion()
             ));
         }
         return listaPqrs;
@@ -137,7 +138,8 @@ public class ServicioPacienteImpl implements ServicioPaciente {
                     p.getCodigo(),
                     p.getTipo(),
                     p.getEstado(),
-                    p.getFechaCreacion()
+                    p.getFechaCreacion(),
+                    p.getDescripcion()
             ));
         }
         return listaPqrs;
@@ -145,7 +147,7 @@ public class ServicioPacienteImpl implements ServicioPaciente {
 
     @Override
     public DetallePqrsDTO verDetallePqrs(int codigo) throws Exception {
-        Optional<Pqrs> opcional = pqrsRepo.findById(codigo);
+        Optional<Pqrs> opcional = pqrsRepo.findByCodigo(codigo);
         if(opcional.isEmpty()){
             throw new Exception("No hay un pqrs con el codigo: " + codigo);
         }

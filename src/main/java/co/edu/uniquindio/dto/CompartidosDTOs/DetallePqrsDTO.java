@@ -21,7 +21,7 @@ public record DetallePqrsDTO(
         EstadoPqrs estado,
 
         @NotNull
-        LocalDateTime fecha,
+        LocalDateTime fechaCreacion,
 
         @NotBlank @Length(max = 500)
         String motivo,

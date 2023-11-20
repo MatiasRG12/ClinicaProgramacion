@@ -171,7 +171,8 @@ public class ServicioAdministradorImpl implements ServicioAdministrador {
                     p.getCodigo(),
                     p.getTipo(),
                     p.getEstado(),
-                    p.getFechaCreacion()
+                    p.getFechaCreacion(),
+                    p.getDescripcion()
             ));
         }
         return pqrsEncontrados;
@@ -213,7 +214,8 @@ public class ServicioAdministradorImpl implements ServicioAdministrador {
                         p.getCodigo(),
                         p.getTipo(),
                         p.getEstado(),
-                        p.getFechaCreacion()
+                        p.getFechaCreacion(),
+                        p.getDescripcion()
                 ));
             }
         }

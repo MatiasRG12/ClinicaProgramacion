@@ -6,9 +6,7 @@ import co.edu.uniquindio.dto.CompartidosDTOs.ReestablecerContraseniaDTO;
 import co.edu.uniquindio.dto.CompartidosDTOs.RegistroRespuestaDTO;
 import co.edu.uniquindio.dto.extrasDTOs.EmailDTO;
 import co.edu.uniquindio.modelo.entidades.*;
-import co.edu.uniquindio.modelo.enumeraciones.Eps;
-import co.edu.uniquindio.modelo.enumeraciones.Especialidad;
-import co.edu.uniquindio.modelo.enumeraciones.TipoSangre;
+import co.edu.uniquindio.modelo.enumeraciones.*;
 import co.edu.uniquindio.repositorios.*;
 import co.edu.uniquindio.servicios.interfaces.ServicioEmail;
 import co.edu.uniquindio.servicios.interfaces.ServicioGeneral;
@@ -120,13 +118,22 @@ public class ServicioGeneralImpl implements ServicioGeneral {
         }
         return listaTipoSangre;
     }
-
+    @Override
     public List<Especialidad> listarEspecialidades() throws Exception{
         List<Especialidad> listaEspecialidades = List.of(Especialidad.values());
         if (listaEspecialidades.isEmpty()){
             throw new Exception("No hay especialidades");
         }
         return listaEspecialidades;
+    }
+
+    @Override
+    public List<TipoPqrs> listarTipoPqrs() throws Exception{
+        List<TipoPqrs> listaTipoPqrs = List.of(TipoPqrs.values());
+        if (listaTipoPqrs.isEmpty()){
+            throw new Exception("No hay estados de la pqrs");
+        }
+        return listaTipoPqrs;
     }
 
     /**

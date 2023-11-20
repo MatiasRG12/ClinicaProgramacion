@@ -17,6 +17,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
@@ -39,7 +41,7 @@ public class ServicioPacienteImplTest {
                 "4321",
                 "3134697423",
                 "karlas@gmail.com",
-                LocalDateTime.of(2023, Month.NOVEMBER, 23, 14, 20),
+                LocalDate.of(2023, Month.NOVEMBER, 23),
                 "url_foto",
                 Eps.NUEVA_EPS,
                 TipoSangre.A_NEGATIVO,

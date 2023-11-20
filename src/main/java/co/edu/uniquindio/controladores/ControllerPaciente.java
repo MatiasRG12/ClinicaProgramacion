@@ -3,6 +3,7 @@ package co.edu.uniquindio.controladores;
 import co.edu.uniquindio.dto.CompartidosDTOs.*;
 import co.edu.uniquindio.dto.PacienteDTOs.*;
 import co.edu.uniquindio.dto.extrasDTOs.MensajeDTO;
+import co.edu.uniquindio.modelo.enumeraciones.Especialidad;
 import co.edu.uniquindio.servicios.interfaces.ServicioGeneral;
 import co.edu.uniquindio.servicios.interfaces.ServicioPaciente;
 import jakarta.validation.Valid;
@@ -29,9 +30,10 @@ public class ControllerPaciente {
     @PutMapping("/infoPersonal/editarInfo")
     public ResponseEntity<MensajeDTO<Integer>> editarInfoBasica(@Valid @RequestBody EditarPerfilPacienteDTO pacienteDTO) throws Exception{
         int codigoPaciente = servicioPaciente.editarInfoBasica(pacienteDTO);
-        return ResponseEntity.
-                status(HttpStatus.OK)
-                .body(new MensajeDTO<>(false,ms.getMessage("",null,LocaleContextHolder.getLocale()),codigoPaciente));
+       // return ResponseEntity.
+               //status(HttpStatus.OK)
+               // .body(new MensajeDTO<>(false,ms.getMessage("",null,LocaleContextHolder.getLocale()),codigoPaciente));
+        return ResponseEntity.ok().body( new MensajeDTO<>(false," ",codigoPaciente));
     }
 
     @PutMapping("/infoPersonal/cambiarContrasenia")
@@ -53,25 +55,29 @@ public class ControllerPaciente {
     @PutMapping("/pqrs/crear")
     public ResponseEntity<MensajeDTO<Integer>> crearPQRS(@Valid @RequestBody CrearPqrsDTO pqrsDTO) throws Exception{
         int codigoPqrs = servicioPaciente.crearPQRS(pqrsDTO);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MensajeDTO<>(false,ms.getMessage("",null,LocaleContextHolder.getLocale()),codigoPqrs));
+        //return ResponseEntity
+               // .status(HttpStatus.OK)
+              //  .body(new MensajeDTO<>(false,ms.getMessage("",null,LocaleContextHolder.getLocale()),codigoPqrs));
+        return ResponseEntity.ok().body( new MensajeDTO<>(false," ",codigoPqrs));
     }
 
     @GetMapping("/pqrs/listar/{codigoPaciente}")
     public ResponseEntity<MensajeDTO<List<InfoPqrsDTO>>> listarPQRSPaciente(@PathVariable int codigoPaciente) throws Exception{
         List<InfoPqrsDTO> listaPqrs = servicioPaciente.listarPQRSPaciente(codigoPaciente);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MensajeDTO<>(false,ms.getMessage("",null,LocaleContextHolder.getLocale()),listaPqrs));
+       // return ResponseEntity
+              //  .status(HttpStatus.OK)
+               // .body(new MensajeDTO<>(false,ms.getMessage("",null,LocaleContextHolder.getLocale()),listaPqrs));
+        return ResponseEntity.ok().body( new MensajeDTO<>(false," ",listaPqrs));
+
     }
 
     @GetMapping("/pqrs/verDetalle/{codigo}")
     public ResponseEntity<MensajeDTO<DetallePqrsDTO>> verDetallePqrs(@PathVariable int codigo)throws Exception{
         DetallePqrsDTO detallePqrs = servicioPaciente.verDetallePqrs(codigo);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MensajeDTO<>(false,ms.getMessage("",null,LocaleContextHolder.getLocale()),detallePqrs));
+        //return ResponseEntity
+              //  .status(HttpStatus.OK)
+              //  .body(new MensajeDTO<>(false,ms.getMessage("",null,LocaleContextHolder.getLocale()),detallePqrs));
+        return ResponseEntity.ok().body( new MensajeDTO<>(false," ",detallePqrs));
     }
 
     @PutMapping("/pqrs/responder")
@@ -93,9 +99,10 @@ public class ControllerPaciente {
     @GetMapping("/citasMedicas/fechasMedico/{idMedico}")
     public ResponseEntity<MensajeDTO<List<ItemFechaMedicoDTO>>> listarFechasMedico(@PathVariable int idMedico) throws Exception{
         List<ItemFechaMedicoDTO> listaFechas = servicioPaciente.listarFechasMedico(idMedico);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MensajeDTO<>(false,ms.getMessage("",null,LocaleContextHolder.getLocale()),listaFechas));
+       // return ResponseEntity
+                //.status(HttpStatus.OK)
+               // .body(new MensajeDTO<>(false,ms.getMessage("",null,LocaleContextHolder.getLocale()),listaFechas));
+        return ResponseEntity.ok().body( new MensajeDTO<>(false," ",listaFechas));
     }
 
     @PutMapping("/citasMedicas/agendar")
@@ -117,9 +124,10 @@ public class ControllerPaciente {
     @GetMapping("/historialCitas/listar/{codigoPaciente}")
     public ResponseEntity<MensajeDTO<List<InfoCitaDTO>>> listarCitasPaciente(@PathVariable int codigoPaciente) throws Exception{
         List<InfoCitaDTO> listaCitas = servicioPaciente.listarCitasPaciente(codigoPaciente);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new MensajeDTO<>(false,ms.getMessage("",null, LocaleContextHolder.getLocale()),listaCitas));
+        //return ResponseEntity
+               // .status(HttpStatus.OK)
+              //  .body(new MensajeDTO<>(false,ms.getMessage("",null, LocaleContextHolder.getLocale()),listaCitas));
+        return ResponseEntity.ok().body( new MensajeDTO<>(false," ",listaCitas));
     }
 
     @GetMapping("/historial/filtrar-medico")
@@ -161,5 +169,7 @@ public class ControllerPaciente {
                 .status(HttpStatus.OK)
                 .body(new MensajeDTO<>(false,ms.getMessage("",null,LocaleContextHolder.getLocale()),detalleCita));
     }
+
+
 
 }

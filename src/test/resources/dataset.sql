@@ -4,13 +4,13 @@ insert into usuario values ("admin", 033, "passwordAdminTres", "adminTres@gmail.
 insert into usuario values ("admin", 034, "passwordAdminCuatro", "adminCuatro@gmail.com");
 insert into usuario values ("admin", 035, "passwordAdminCinco", "adminCinco@gmail.com");
 
-insert into usuario values ("paciente", 005, "passwordPacienteUno", "pacienteUno@gmail.com");
+insert into usuario values ("paciente", 005, "$2a$10$bILaCW9CACiAFy2v6dogSOqTnm.0Tr1s2Ptawf3VSzLoACxfxPtA2", "pacienteUno@gmail.com");
 insert into usuario values ("paciente", 006, "passwordPacienteDos", "pacienteDos@gmail.com");
 insert into usuario values ("paciente", 067, "passwordPacienteTres", "pacienteTres@gmail.com");
 insert into usuario values ("paciente", 068, "passwordPacienteCuatro", "pacienteCuatro@gmail.com");
 insert into usuario values ("paciente", 069, "passwordPacienteCinco", "pacienteCinco@gmail.com");
 
-insert into usuario values ("medico", 003, "passwordMedicoUno", "medicoUno@gmail.com");
+insert into usuario values ("medico", 003, "$2a$10$hXGoRvgh8QIhzJOAoxh90ewM5zdbnndtjtid0UqZDuP.s.xdTsOX2", "medicoUno@gmail.com");
 insert into usuario values ("medico", 004, "passwordMedicoDos", "medicoDos@gmail.com");
 insert into usuario values ("medico", 045, "passwordMedicoTres", "medicoTres@gmail.com");
 insert into usuario values ("medico", 046, "passwordMedicoCuatro", "medicoCuatro@gmail.com");

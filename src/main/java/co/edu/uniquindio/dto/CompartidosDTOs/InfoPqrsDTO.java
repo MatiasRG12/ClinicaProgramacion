@@ -5,11 +5,11 @@ import co.edu.uniquindio.modelo.enumeraciones.TipoPqrs;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record InfoPqrsDTO(
 
-        @NotBlank
         int codigo,
 
         @NotNull
@@ -19,6 +19,10 @@ public record InfoPqrsDTO(
         EstadoPqrs estado,
 
         @NotNull
-        LocalDateTime fechaCreacion
+        LocalDateTime fechaCreacion,
+        @NotBlank
+        String motivo
+
+
 ) {
 }

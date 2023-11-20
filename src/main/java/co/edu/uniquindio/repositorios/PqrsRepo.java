@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,9 +15,11 @@ import java.util.Optional;
 public interface PqrsRepo extends JpaRepository<Pqrs,Integer> {
     List<Pqrs> findAllByEstado(EstadoPqrs estado);
 
-    @Query("SELECT p FROM Pqrs p WHERE p.codigoCita.paciente = :codigoPaciente")
+    @Query("SELECT p FROM Pqrs p WHERE p.codigoCita.paciente.codigo = :codigoPaciente")
     List<Pqrs> buscarPorCitasDePaciente(int codigoPaciente);
 
+    @Query("SELECT p FROM Pqrs p where p.codigo = :codigo")
+    Optional<Pqrs> findByCodigo(int codigo);
     @Query("SELECT COUNT(p) FROM Pqrs p WHERE p.estado = :estadoPqrs")
     Long contarActivos(EstadoPqrs estadoPqrs);
 

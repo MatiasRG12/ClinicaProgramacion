@@ -4,7 +4,8 @@ public enum TipoPqrs {
 
     QUEJA ("Queja"),
     RECLAMO ("Reclamo"),
-    SOLICITUD ("Solicitud");
+    SOLICITUD ("Solicitud"),
+    PETICION ("Peticion");
 
     private String etiqueta;
 
